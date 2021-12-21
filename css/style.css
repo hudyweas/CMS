@@ -1,0 +1,89 @@
+@import url("reset.css");
+@import url("basic.css");
+
+body {
+    font-family: "Open Sans", sans-serif;
+}
+
+.wrapper-horizontal {
+    display: flex;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 600px;
+    height: 100vh;
+    padding: 5%;
+}
+
+.login-section {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px 10px;
+    border-radius: 20px;
+    background-color: rgba(255, 140, 1, 0.1);
+    border: 2px solid #ff8c01;
+
+    font-size: 12px;
+}
+
+.login-section input {
+    border: 1px solid #ff8c01;
+    border-radius: 5px;
+}
+
+.input-section {
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+}
+
+.passwordinfo-section {
+    display: flex;
+    justify-content: space-between;
+}
+
+.login-section .input-section {
+    padding: 7px 0px;
+}
+
+.input-section section {
+    padding-bottom: 2px;
+}
+
+.sign-in-bttn {
+    color: white;
+    background-color: #ff8c01;
+    border-radius: 7px;
+    border: 0px;
+    padding: 5px;
+}
+
+.sign-in-bttn:hover {
+    background-color: #9e5700;
+}
+
+.main-color {
+    color: #ff8c01;
+}
+
+a.main-color:hover {
+    text-decoration: none;
+    color: #9e5700;
+}
+
+footer {
+    padding: 20px;
+}
+
+.horizontal-footer-list {
+    display: flex;
+    justify-content: space-evenly;
+
+    width: 200px;
+    font-size: 10px;
+}
