@@ -2,7 +2,8 @@
 @import url("basic.css");
 
 body {
-    font-family: "Open Sans", sans-serif;
+    font-family: "Roboto", sans-serif;
+    background-color: #112a40;
 }
 
 .wrapper-horizontal {
@@ -19,71 +20,81 @@ body {
     padding: 5%;
 }
 
-.login-section {
+.login-panel {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 20px 10px;
-    border-radius: 20px;
-    background-color: rgba(255, 140, 1, 0.1);
-    border: 2px solid #ff8c01;
+    padding: 20px 12px;
 
     font-size: 12px;
 }
 
-.login-section input {
-    border: 1px solid #ff8c01;
-    border-radius: 5px;
+.login-panel .login-input,
+.psswd-input {
+    margin: 8px 0px;
+    padding: 0 8px;
+    width: 300px;
+    height: 40px;
+    background-color: #1c4366;
+    color: #edefea;
 }
 
-.input-section {
-    font-weight: 500;
-    display: flex;
-    flex-direction: column;
+.login-panel input {
+    border: 0;
 }
 
-.passwordinfo-section {
+.login-panel .submit-bttn {
+    width: 100px;
+    height: 40px;
+    margin-left: auto;
+    background-color: #112a40;
+    border: 2px solid #f28b0c;
+    color: #f28b0c;
+}
+
+.login-panel .submit-bttn:hover {
+    background-color: #f28b0c;
+    color: #112a40;
+    font-weight: bold;
+}
+
+.login-panel input::placeholder {
+    color: #edefea;
+}
+
+.login-panel .container {
     display: flex;
     justify-content: space-between;
-}
-
-.login-section .input-section {
-    padding: 7px 0px;
-}
-
-.input-section section {
-    padding-bottom: 2px;
-}
-
-.sign-in-bttn {
-    color: white;
-    background-color: #ff8c01;
-    border-radius: 7px;
-    border: 0px;
-    padding: 5px;
-}
-
-.sign-in-bttn:hover {
-    background-color: #9e5700;
-}
-
-.main-color {
-    color: #ff8c01;
-}
-
-a.main-color:hover {
-    text-decoration: none;
-    color: #9e5700;
+    align-items: baseline;
+    padding: 10px 0;
 }
 
 footer {
-    padding: 20px;
+    margin-top: auto;
 }
 
-.horizontal-footer-list {
-    display: flex;
-    justify-content: space-evenly;
+.footer-list {
+    text-align: center;
+    font-size: 12px;
+}
 
-    width: 200px;
-    font-size: 10px;
+.footer-list li {
+    display: inline-block;
+    padding: 0 4px;
+}
+
+.main-logo {
+    width: 300px;
+}
+
+.main-color {
+    color: #f28b0c;
+}
+
+.basic-color {
+    color: #edefea;
+}
+
+.border {
+    border: 1px solid red;
 }
