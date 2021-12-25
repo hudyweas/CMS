@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>CMS</title>
+        <link rel="stylesheet" href="../css/style.css" />
+
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap"
+            rel="stylesheet"
+        />
+
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=Anton&family=Roboto:wght@300;400;500&display=swap");
+        </style>
+
+        <script type="module" src="../js/config.js"></script>
+        <script src="../js/script.js"></script>
+    </head>
+    <body>
+        <section class="wrapper-horizontal">
+            <div class="wrapper">
+                <form class="login-panel">
+                    <h3 class="white-color login-heading">REGISTER</h3>
+
+                    <input
+                        class="login-input reg-email"
+                        type="text"
+                        class="login"
+                        placeholder="Email"
+                    />
+                    <input class="psswd-input reg-psswd" type="text" placeholder="password" />
+                    <input
+                        class="psswd-input reg-psswd-repeat"
+                        type="text"
+                        placeholder="repeat your password"
+                    />
+                    <input
+                        class="submit-bttn"
+                        type="submit"
+                        value="REGISTER"
+                        action="registerUser()"
+                    />
+                </form>
+
+                <footer>
+                    <nav>
+                        <ol class="horizontal-list">
+                            <li><a class="basic-color" href="#">Terms</a></li>
+                            <li><a class="basic-color" href="#">Privacy</a></li>
+                            <li><a class="basic-color" href="#">Security</a></li>
+                            <li><a class="basic-color" href="#">Contact</a></li>
+                        </ol>
+                    </nav>
+                </footer>
+            </div>
+        </section>
+    </body>
+</html>
