@@ -44,7 +44,9 @@
         <label for="remember-me"></label>
         <span class="main-color">Remember me</span>
       </div>
-      <button class="submit-bttn" [disabled]="loginForm.valid">SIGN IN</button>
+      <button class="submit-bttn" [disabled]="loginForm.invalid">
+        SIGN IN
+      </button>
       <ol class="accpsswd">
         <li><a class="basic-color" href="#">Forgot password?</a></li>
         <li>
