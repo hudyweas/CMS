@@ -1,0 +1,69 @@
+<section class="wrapper-horizontal">
+  <div class="wrapper">
+    <form
+      class="login-panel"
+      (ngSubmit)="login()"
+      [formGroup]="loginForm"
+      novalidate
+    >
+      <h3 class="white-color login-heading">SIGN IN</h3>
+
+      <input
+        name="email"
+        class="login-input reg-email"
+        type="text"
+        placeholder="Email"
+        formControlName="email"
+        (input)="isEmailUsed()"
+      />
+      <div
+        class="error"
+        *ngIf="(email.touched || email.dirty) && email.invalid"
+      >
+        <div *ngIf="email.hasError('required')">Email is required</div>
+        <div *ngIf="email.hasError('email')">This is not an email</div>
+        <div *ngIf="!isEmail">There is no account for this email</div>
+      </div>
+      <input
+        class="psswd-input reg-psswd"
+        type="password"
+        placeholder="password"
+        formControlName="psswd"
+        (change)="isEmailUsed()"
+      />
+      <div
+        class="error"
+        *ngIf="(psswd.touched || psswd.dirty) && psswd.invalid"
+      >
+        <div *ngIf="psswd?.hasError('required')">Password is required</div>
+        <div *ngIf="psswd?.hasError('minlength')">Minimal length is 6</div>
+      </div>
+      <div class="error" *ngIf="invalidPassword">Password doesn't match</div>
+      <div class="checkboxOverride remember-me">
+        <input type="checkbox" name="" id="remember-me" [checked]="isChecked" />
+        <label for="remember-me"></label>
+        <span class="main-color">Remember me</span>
+      </div>
+      <button class="submit-bttn" [disabled]="loginForm.valid">SIGN IN</button>
+      <ol class="accpsswd">
+        <li><a class="basic-color" href="#">Forgot password?</a></li>
+        <li>
+          <a class="main-color" [routerLink]="['/register-page']"
+            >Create an account</a
+          >
+        </li>
+      </ol>
+    </form>
+
+    <footer>
+      <nav>
+        <ol class="horizontal-list">
+          <li><a class="basic-color" href="#">Terms</a></li>
+          <li><a class="basic-color" href="#">Privacy</a></li>
+          <li><a class="basic-color" href="#">Security</a></li>
+          <li><a class="basic-color" href="#">Contact</a></li>
+        </ol>
+      </nav>
+    </footer>
+  </div>
+</section>

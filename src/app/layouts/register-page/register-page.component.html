@@ -1,0 +1,73 @@
+<section class="wrapper-horizontal">
+  <div class="wrapper">
+    <form
+      class="login-panel"
+      [formGroup]="registerForm"
+      (ngSubmit)="createUser()"
+      novalidate
+    >
+      <h3 class="white-color login-heading">REGISTER</h3>
+
+      <input
+        class="login-input reg-email"
+        type="text"
+        placeholder="Email"
+        formControlName="email"
+        (input)="isEmailUsed()"
+      />
+      <div
+        class="error"
+        *ngIf="(email.touched || email.dirty) && email.invalid"
+      >
+        <div *ngIf="email.hasError('required')">Email is required</div>
+        <div *ngIf="email.hasError('email')">This is not an email</div>
+        <div *ngIf="isEmail">Email has been used</div>
+      </div>
+      <input
+        class="psswd-input reg-psswd"
+        type="text"
+        placeholder="password"
+        formControlName="psswd"
+        (input)="isPasswordEqual()"
+      />
+      <div
+        class="error"
+        *ngIf="(psswd.touched || psswd.dirty) && psswd.invalid"
+      >
+        <div *ngIf="psswd?.hasError('required')">Repeat your password</div>
+        <div *ngIf="psswd?.hasError('minlength')">Minimal length is 6</div>
+      </div>
+      <input
+        class="psswd-input reg-psswd-repeat"
+        type="text"
+        placeholder="repeat your password"
+        formControlName="psswdRepeat"
+        (input)="isPasswordEqual()"
+      />
+      <div
+        class="error"
+        *ngIf="
+          (psswdRepeat.touched || psswdRepeat.dirty) && psswdRepeat.invalid
+        "
+      >
+        <div *ngIf="psswdRepeat.hasError('required')">Repeat your password</div>
+        <div *ngIf="psswdRepeat.hasError('minlength')">Minimal length is 6</div>
+        <div *ngIf="!isPassword">Passwords are not the same</div>
+      </div>
+      <button class="submit-bttn" [disabled]="registerForm.invalid">
+        REGISTER
+      </button>
+    </form>
+
+    <footer>
+      <nav>
+        <ol class="horizontal-list">
+          <li><a class="basic-color" href="#">Terms</a></li>
+          <li><a class="basic-color" href="#">Privacy</a></li>
+          <li><a class="basic-color" href="#">Security</a></li>
+          <li><a class="basic-color" href="#">Contact</a></li>
+        </ol>
+      </nav>
+    </footer>
+  </div>
+</section>
