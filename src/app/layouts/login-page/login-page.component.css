@@ -21,21 +21,21 @@
   font-size: 12px;
 }
 
-input[type="text"],
-input[type="password"] {
+.login-input {
   margin: 8px 0px;
   padding: 0 8px;
   width: 300px;
   height: 40px;
   background-color: #010a26;
   color: #7d7d7d;
-}
-
-.login-panel input {
   border: 0;
 }
 
-.login-panel .submit-bttn {
+.login-input::placeholder {
+  color: #edefea;
+}
+
+.login-panel .submit-button {
   width: 300px;
   height: 40px;
   margin-left: auto;
@@ -44,38 +44,43 @@ input[type="password"] {
   background-color: #f63738;
   border-top: 1px solid grey;
   color: #7f2021;
+  text-transform: uppercase;
 }
 
-.login-panel .submit-bttn:hover {
+.login-panel .submit-button:hover {
   background-color: #7f2021;
   color: #f63738;
   font-weight: bold;
 }
 
-.login-panel .submit-bttn:disabled {
+.login-panel .submit-button:disabled {
   background-color: grey;
   color: black;
   font-weight: bold;
 }
 
-.login-panel input::placeholder {
-  color: #edefea;
-}
-
-.accpsswd {
+.account-password {
   padding: 20px 0;
 }
 
-.accpsswd li {
+.account-password-li {
   display: inline-block;
 }
 
-.accpsswd li a::after {
+.account-password-li::after {
   content: "";
   margin: 4px;
 }
 
-footer {
+.forgot-password-link {
+  color: #7d7d7d;
+}
+
+.create-account-link {
+  color: #7f2021;
+}
+
+.footer {
   margin-top: auto;
 }
 
@@ -84,30 +89,20 @@ footer {
   font-size: 12px;
 }
 
-.horizontal-list li {
+.horizontal-list-li {
   display: inline-block;
   padding: 0 4px;
 }
 
-.main-color {
-  color: #7f2021;
-}
-
-.basic-color {
+.footer-text {
   color: #7d7d7d;
 }
 
-.white-color {
-  color: white;
-}
-
-.border {
-  border: 1px solid red;
-}
-
 .login-heading {
-  font-family: Anton;
+  font-family: Anton, OpenSans;
   margin-bottom: 5px;
+  text-transform: uppercase;
+  color: white;
 }
 
 .login-heading::before {
@@ -123,17 +118,25 @@ footer {
   display: flex;
 }
 
-input[type="checkbox"] {
+.remember-me-text {
+  color: #7f2021;
+}
+
+.remember-me-checkbox {
   visibility: hidden;
 }
-.checkboxOverride {
+.checkbox-override {
   position: relative;
   margin-right: 4px;
 }
-.checkboxOverride input[type="checkbox"]:checked + label:after {
+
+.checkbox-override
+  .remember-me-checkbox:checked
+  + .remember-me-checkbox-label:after {
   opacity: 1;
 }
-.checkboxOverride label {
+
+.checkbox-override label {
   background: none repeat scroll 0 0 #010a26;
   border: 1px solid #7f2021;
   cursor: pointer;
@@ -143,7 +146,8 @@ input[type="checkbox"] {
   top: 0;
   width: 12px;
 }
-.checkboxOverride label:after {
+
+.checkbox-override .remember-me-checkbox-label:after {
   border-style: none none solid solid;
   content: "";
   top: 2px;

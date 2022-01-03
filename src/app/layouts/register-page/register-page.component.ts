@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { TouchSequence } from 'selenium-webdriver';
+import { emailRegex } from 'src/app/models/regex.model';
 
 @Component({
   selector: 'app-register-page',
@@ -16,39 +16,41 @@ export class RegisterPageComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  public ngOnInit(): void {}
 
-  registerForm = this.formBuilder.group({
+  public registerForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
-    psswd: ['', [Validators.required, Validators.minLength(6)]],
-    psswdRepeat: ['', [Validators.required, Validators.minLength(6)]],
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    passwordRepeat: ['', [Validators.required, Validators.minLength(6)]],
   });
 
   createUser() {
     this.afAuth
-      .createUserWithEmailAndPassword(this.email.value, this.psswd.value)
+      .createUserWithEmailAndPassword(this.email.value, this.password.value)
       .then(() => {
         console.log('User created');
         this.router.navigateByUrl('/main-page');
       })
       .catch((error) => {
-        console.log('Something went wrong: ', error.message);
+        console.error;
       });
   }
 
-  isPassword = null;
-  isEmail = null;
+  public isPassword: boolean = null;
+  public isEmail: boolean = null;
 
-  isPasswordEqual() {
-    if (this.psswd.value == this.psswdRepeat.value) {
+  public isPasswordEqual() {
+    if (this.password.value === this.passwordRepeat.value) {
       this.isPassword = true;
     } else {
-      this.registerForm.controls['psswdRepeat'].setErrors({ incorrect: true });
+      this.registerForm.controls['passwordRepeat'].setErrors({
+        incorrect: true,
+      });
       this.isPassword = false;
     }
   }
 
-  isEmailUsed() {
+  public isEmailUsed() {
     if (this.isItEmail(this.email.value)) {
       this.afAuth
         .fetchSignInMethodsForEmail(this.email.value)
@@ -64,11 +66,8 @@ export class RegisterPageComponent implements OnInit {
     this.isEmail = null;
   }
 
-  isItEmail(email) {
-    const re = new RegExp(
-      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-    if (re.test(email)) {
+  public isItEmail(email) {
+    if (emailRegex.test(email)) {
       return true;
     } else {
       return false;
@@ -79,11 +78,11 @@ export class RegisterPageComponent implements OnInit {
     return this.registerForm.get('email');
   }
 
-  get psswd() {
-    return this.registerForm.get('psswd');
+  get password() {
+    return this.registerForm.get('password');
   }
 
-  get psswdRepeat() {
-    return this.registerForm.get('psswdRepeat');
+  get passwordRepeat() {
+    return this.registerForm.get('passwordRepeat');
   }
 }

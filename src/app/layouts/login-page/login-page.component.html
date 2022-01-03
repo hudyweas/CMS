@@ -6,15 +6,15 @@
       [formGroup]="loginForm"
       novalidate
     >
-      <h3 class="white-color login-heading">SIGN IN</h3>
+      <h3 class="login-heading">sign in</h3>
 
       <input
         name="email"
-        class="login-input reg-email"
+        class="login-input"
         type="text"
         placeholder="Email"
         formControlName="email"
-        (input)="isEmailUsed()"
+        (change)="isEmailUsed()"
       />
       <div
         class="error"
@@ -25,47 +25,69 @@
         <div *ngIf="!isEmail">There is no account for this email</div>
       </div>
       <input
-        class="psswd-input reg-psswd"
+        class="login-input"
         type="password"
         placeholder="password"
-        formControlName="psswd"
+        formControlName="password"
         (change)="isEmailUsed()"
       />
       <div
         class="error"
-        *ngIf="(psswd.touched || psswd.dirty) && psswd.invalid"
+        *ngIf="(password.touched || password.dirty) && password.invalid"
       >
-        <div *ngIf="psswd?.hasError('required')">Password is required</div>
-        <div *ngIf="psswd?.hasError('minlength')">Minimal length is 6</div>
+        <div *ngIf="password?.hasError('required')">Password is required</div>
+        <div *ngIf="password?.hasError('minlength')">Minimal length is 6</div>
       </div>
       <div class="error" *ngIf="invalidPassword">Password doesn't match</div>
-      <div class="checkboxOverride remember-me">
-        <input type="checkbox" name="" id="remember-me" [checked]="isChecked" />
-        <label for="remember-me"></label>
-        <span class="main-color">Remember me</span>
+      <div class="checkbox-override remember-me">
+        <input
+          type="checkbox"
+          class="remember-me-checkbox"
+          id="remember-me"
+          [checked]="isChecked"
+        />
+        <label class="remember-me-checkbox-label" for="remember-me"></label>
+        <span class="remember-me-text">Remember me</span>
       </div>
-      <button class="submit-bttn" [disabled]="loginForm.invalid">
-        SIGN IN
+      <button class="submit-button" [disabled]="loginForm.invalid">
+        sign in
       </button>
-      <ol class="accpsswd">
-        <li><a class="basic-color" href="#">Forgot password?</a></li>
-        <li>
-          <a class="main-color" [routerLink]="['/register-page']"
+      <ol class="account-password">
+        <li class="account-password-li">
+          <a
+            class="forgot-password-link account-password-li"
+            [routerLink]="['#']"
+            >Forgot password?</a
+          >
+        </li>
+        <li class="account-password-li">
+          <a
+            class="create-account-link account-password-li"
+            [routerLink]="['/register-page']"
             >Create an account</a
           >
         </li>
       </ol>
     </form>
 
-    <footer>
+    <footer class="footer">
       <nav>
         <ol class="horizontal-list">
-          <li><a class="basic-color" href="#">Terms</a></li>
-          <li><a class="basic-color" href="#">Privacy</a></li>
-          <li><a class="basic-color" href="#">Security</a></li>
-          <li><a class="basic-color" href="#">Contact</a></li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Terms</a>
+          </li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Privacy</a>
+          </li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Security</a>
+          </li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Contact</a>
+          </li>
         </ol>
       </nav>
     </footer>
   </div>
+  <button (click)="log()"></button>
 </section>

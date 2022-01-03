@@ -9,10 +9,10 @@
   align-items: center;
   width: 600px;
   height: 100vh;
-  padding: 5%;
+  padding: 48px;
 }
 
-.login-panel {
+.register-panel {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -21,61 +21,45 @@
   font-size: 12px;
 }
 
-input[type="text"],
-input[type="password"] {
+.register-input {
   margin: 8px 0px;
   padding: 0 8px;
   width: 300px;
   height: 40px;
   background-color: #010a26;
   color: #7d7d7d;
-}
-
-.login-panel input {
   border: 0;
 }
 
-.login-panel .submit-bttn {
+.register-panel .submit-button {
   width: 300px;
   height: 40px;
   margin-left: auto;
   font-weight: bold;
-  font-size: large;
+  font-size: 18px;
   background-color: #f63738;
   border-top: 1px solid grey;
   color: #7f2021;
+  text-transform: uppercase;
 }
 
-.login-panel .submit-bttn:hover {
+.register-panel .submit-button:hover {
   background-color: #7f2021;
   color: #f63738;
   font-weight: bold;
 }
 
-.login-panel .submit-bttn:disabled {
+.register-panel .submit-button:disabled {
   background-color: grey;
   color: black;
   font-weight: bold;
 }
 
-.login-panel input::placeholder {
+.register-panel input::placeholder {
   color: #edefea;
 }
 
-.accpsswd {
-  padding: 20px 0;
-}
-
-.accpsswd li {
-  display: inline-block;
-}
-
-.accpsswd li a::after {
-  content: "";
-  margin: 4px;
-}
-
-footer {
+.footer {
   margin-top: auto;
 }
 
@@ -84,76 +68,33 @@ footer {
   font-size: 12px;
 }
 
-.horizontal-list li {
+.horizontal-list-li {
   display: inline-block;
   padding: 0 4px;
 }
 
-.main-color {
-  color: #7f2021;
-}
-
-.basic-color {
+.footer-text {
   color: #7d7d7d;
-}
-
-.white-color {
-  color: white;
 }
 
 .border {
   border: 1px solid red;
 }
 
-.login-heading {
-  font-family: Anton;
+.register-heading {
+  font-family: Anton, OpenSans;
   margin-bottom: 5px;
+  text-transform: uppercase;
+  color: white;
 }
 
-.login-heading::before {
+.register-heading::before {
   content: ".";
   display: inline-block;
   width: 15px;
   margin-right: 15px;
   color: #f63738;
   background-color: #f63738;
-}
-
-.remember-me {
-  display: flex;
-}
-
-input[type="checkbox"] {
-  visibility: hidden;
-}
-.checkboxOverride {
-  position: relative;
-  margin-right: 4px;
-}
-.checkboxOverride input[type="checkbox"]:checked + label:after {
-  opacity: 1;
-}
-.checkboxOverride label {
-  background: none repeat scroll 0 0 #010a26;
-  border: 1px solid #7f2021;
-  cursor: pointer;
-  height: 12px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 12px;
-}
-.checkboxOverride label:after {
-  border-style: none none solid solid;
-  content: "";
-  top: 2px;
-  left: 2px;
-  height: 4px;
-  opacity: 0;
-  position: absolute;
-  transform: rotate(-45deg);
-  width: 8px;
-  border-color: #7f2021;
 }
 
 .error {

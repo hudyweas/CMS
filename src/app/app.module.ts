@@ -19,6 +19,8 @@ const components = [
   MainPageComponent,
 ];
 
+
+//T Brak guarda, na login pagu, jak sie zaloguje to nie powininem miec mozliwosci i tak wejscia ponowanie na login screen, a moge mimo to ;) 
 const routes: Routes = [
   { path: 'login-page', component: LoginPageComponent },
   { path: 'register-page', component: RegisterPageComponent },

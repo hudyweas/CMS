@@ -1,19 +1,18 @@
 <section class="wrapper-horizontal">
   <div class="wrapper">
     <form
-      class="login-panel"
+      class="register-panel"
       [formGroup]="registerForm"
       (ngSubmit)="createUser()"
       novalidate
     >
-      <h3 class="white-color login-heading">REGISTER</h3>
-
+      <h3 class="register-heading">register</h3>
       <input
-        class="login-input reg-email"
+        class="register-input"
         type="text"
         placeholder="Email"
         formControlName="email"
-        (input)="isEmailUsed()"
+        (change)="isEmailUsed()"
       />
       <div
         class="error"
@@ -24,48 +23,61 @@
         <div *ngIf="isEmail">Email has been used</div>
       </div>
       <input
-        class="psswd-input reg-psswd"
+        class="register-input"
         type="text"
         placeholder="password"
-        formControlName="psswd"
-        (input)="isPasswordEqual()"
+        formControlName="password"
+        (change)="isPasswordEqual()"
       />
       <div
         class="error"
-        *ngIf="(psswd.touched || psswd.dirty) && psswd.invalid"
+        *ngIf="(password.touched || password.dirty) && password.invalid"
       >
-        <div *ngIf="psswd?.hasError('required')">Repeat your password</div>
-        <div *ngIf="psswd?.hasError('minlength')">Minimal length is 6</div>
+        <div *ngIf="password?.hasError('required')">Repeat your password</div>
+        <div *ngIf="password?.hasError('minlength')">Minimal length is 6</div>
       </div>
       <input
-        class="psswd-input reg-psswd-repeat"
+        class="register-input"
         type="text"
         placeholder="repeat your password"
-        formControlName="psswdRepeat"
+        formControlName="passwordRepeat"
         (input)="isPasswordEqual()"
       />
       <div
         class="error"
         *ngIf="
-          (psswdRepeat.touched || psswdRepeat.dirty) && psswdRepeat.invalid
+          (passwordRepeat.touched || passwordRepeat.dirty) &&
+          passwordRepeat.invalid
         "
       >
-        <div *ngIf="psswdRepeat.hasError('required')">Repeat your password</div>
-        <div *ngIf="psswdRepeat.hasError('minlength')">Minimal length is 6</div>
+        <div *ngIf="passwordRepeat.hasError('required')">
+          Repeat your password
+        </div>
+        <div *ngIf="passwordRepeat.hasError('minlength')">
+          Minimal length is 6
+        </div>
         <div *ngIf="!isPassword">Passwords are not the same</div>
       </div>
-      <button class="submit-bttn" [disabled]="registerForm.invalid">
-        REGISTER
+      <button class="submit-button" [disabled]="registerForm.invalid">
+        register
       </button>
     </form>
 
-    <footer>
+    <footer class="footer">
       <nav>
         <ol class="horizontal-list">
-          <li><a class="basic-color" href="#">Terms</a></li>
-          <li><a class="basic-color" href="#">Privacy</a></li>
-          <li><a class="basic-color" href="#">Security</a></li>
-          <li><a class="basic-color" href="#">Contact</a></li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Terms</a>
+          </li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Privacy</a>
+          </li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Security</a>
+          </li>
+          <li class="horizontal-list-li">
+            <a class="footer-text" [routerLink]="['#']">Contact</a>
+          </li>
         </ol>
       </nav>
     </footer>
