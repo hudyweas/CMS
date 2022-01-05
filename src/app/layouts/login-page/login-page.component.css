@@ -80,24 +80,6 @@
   color: #7f2021;
 }
 
-.footer {
-  margin-top: auto;
-}
-
-.horizontal-list {
-  text-align: center;
-  font-size: 12px;
-}
-
-.horizontal-list-li {
-  display: inline-block;
-  padding: 0 4px;
-}
-
-.footer-text {
-  color: #7d7d7d;
-}
-
 .login-heading {
   font-family: Anton, OpenSans;
   margin-bottom: 5px;

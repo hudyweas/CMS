@@ -11,13 +11,12 @@ import { RouterModule, Routes } from '@angular/router';
 import { RegisterPageComponent } from './layouts/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainPageComponent } from './main-page/main-page.component';
-import { AuthGuardService } from './services/auth-guard.service';
-import { AuthService } from './services/auth.service';
 import {
-  JwtHelperService,
-  JwtModule,
-  JwtModuleOptions,
-} from '@auth0/angular-jwt';
+  AngularFireAuthGuard,
+  redirectLoggedInTo,
+  redirectUnauthorizedTo,
+} from '@angular/fire/auth-guard';
+import { ComponentsModule } from './components/components.module';
 
 const components = [
   LoginPageComponent,
@@ -25,32 +24,34 @@ const components = [
   MainPageComponent,
 ];
 
-//T Brak guarda, na login pagu, jak sie zaloguje to nie powininem miec mozliwosci i tak wejscia ponowanie na login screen, a moge mimo to ;)
+const redirectLoggedInToMain = () => redirectLoggedInTo(['main-page']);
+const redirectUnauthorizedToLogin = () =>
+  redirectUnauthorizedTo(['login-page']);
+
 const routes: Routes = [
   {
     path: 'login-page',
     component: LoginPageComponent,
-    canActivate: [AuthGuardService],
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToMain },
   },
+
   {
     path: 'register-page',
     component: RegisterPageComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectLoggedInToMain },
   },
-  { path: 'main-page', component: MainPageComponent },
+
+  {
+    path: 'main-page',
+    component: MainPageComponent,
+    canActivate: [AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin },
+  },
 
   { path: '', redirectTo: '/login-page', pathMatch: 'full' },
 ];
-
-export function tokenGetter() {
-  return localStorage.getItem('access_token');
-}
-
-const JWT_Module_Options: JwtModuleOptions = {
-  config: {
-    tokenGetter: tokenGetter,
-    allowedDomains: [''],
-  },
-};
 
 @NgModule({
   declarations: [AppComponent, components],
@@ -63,11 +64,9 @@ const JWT_Module_Options: JwtModuleOptions = {
     RouterModule.forRoot(routes),
     FormsModule,
     ReactiveFormsModule,
-    JwtModule,
-    JwtModule.forRoot(JWT_Module_Options),
+    ComponentsModule,
   ],
   exports: [components],
-  providers: [AuthGuardService, AuthService, JwtHelperService],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })
