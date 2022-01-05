@@ -29,7 +29,7 @@ export class RegisterPageComponent implements OnInit {
       .createUserWithEmailAndPassword(this.email.value, this.password.value)
       .then(() => {
         console.log('User created');
-        this.router.navigateByUrl('/main-page');
+        this.router.navigateByUrl('/login-page');
       })
       .catch((error) => {
         console.error;
