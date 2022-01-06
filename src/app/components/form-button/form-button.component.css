@@ -1,0 +1,23 @@
+.button {
+  width: 300px;
+  height: 40px;
+  margin-left: auto;
+  font-weight: bold;
+  font-size: large;
+  background-color: #f63738;
+  border-top: 1px solid grey;
+  color: #7f2021;
+  text-transform: uppercase;
+}
+
+.button:hover {
+  background-color: #7f2021;
+  color: #f63738;
+  font-weight: bold;
+}
+
+.button:disabled {
+  background-color: grey;
+  color: black;
+  font-weight: bold;
+}

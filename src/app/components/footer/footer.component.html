@@ -1,9 +1,5 @@
-<nav class="footer-nav">
-  <ol class="horizontal-list">
-    <li class="horizontal-list-li" *ngFor="let l of links">
-      <cms-link [urlLink]="[l.urlLink]">
-        {{ l.urlName }}
-      </cms-link>
-    </li>
-  </ol>
-</nav>
+<footer>
+  <nav class="footer-nav">
+    <cms-link-list [links]="links"></cms-link-list>
+  </nav>
+</footer>

@@ -1,0 +1,40 @@
+.input {
+  visibility: hidden;
+}
+.wrapper {
+  display: flex;
+  position: relative;
+  margin-right: 4px;
+}
+
+.wrapper .input:checked + .input-label:after {
+  opacity: 1;
+}
+
+.wrapper .input-label {
+  background: none repeat scroll 0 0 #010a26;
+  border: 1px solid #7f2021;
+  cursor: pointer;
+  height: 12px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 12px;
+}
+
+.wrapper .input-label:after {
+  border-style: none none solid solid;
+  content: "";
+  top: 2px;
+  left: 2px;
+  height: 4px;
+  opacity: 0;
+  position: absolute;
+  transform: rotate(-45deg);
+  width: 8px;
+  border-color: #7f2021;
+}
+
+.input-text {
+  color: #7f2021;
+}

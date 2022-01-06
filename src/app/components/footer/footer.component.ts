@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { routerDTO, routerLink } from 'src/app/models/routers-link';
 
 @Component({
   selector: 'cms-footer',
@@ -7,5 +6,5 @@ import { routerDTO, routerLink } from 'src/app/models/routers-link';
   styleUrls: ['./footer.component.css'],
 })
 export class FooterComponent {
-  public links: routerDTO[] = routerLink;
+  public links: string = 'footer';
 }

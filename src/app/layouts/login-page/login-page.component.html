@@ -6,70 +6,55 @@
       [formGroup]="loginForm"
       novalidate
     >
-      <h3 class="login-heading">sign in</h3>
+      <cms-form-header>Sign in</cms-form-header>
 
-      <input
-        name="email"
-        class="login-input"
-        type="text"
-        placeholder="Email"
-        formControlName="email"
-        (change)="isEmailUsed()"
-      />
-      <div
-        class="error"
-        *ngIf="(email.touched || email.dirty) && email.invalid"
-      >
-        <div *ngIf="email.hasError('required')">Email is required</div>
-        <div *ngIf="email.hasError('email')">This is not an email</div>
-        <div *ngIf="!isEmail">There is no account for this email</div>
+      <cms-input
+        [type]="'email'"
+        [placeholder]="'Email'"
+        [required]="true"
+        (change)="isEmailUsed($event)"
+      ></cms-input>
+
+      <div *ngIf="email.touched && email.invalid">
+        <cms-error [condition]="email.hasError('required')">
+          Email is required
+        </cms-error>
+        <cms-error [condition]="email.hasError('email')">
+          This is not an email
+        </cms-error>
+        <cms-error [condition]="!isEmail">
+          There is no account for this email
+        </cms-error>
       </div>
-      <input
-        class="login-input"
-        type="password"
-        placeholder="password"
-        formControlName="password"
-        (change)="isEmailUsed()"
-      />
-      <div
-        class="error"
-        *ngIf="(password.touched || password.dirty) && password.invalid"
-      >
-        <div *ngIf="password?.hasError('required')">Password is required</div>
-        <div *ngIf="password?.hasError('minlength')">Minimal length is 6</div>
+
+      <cms-input
+        [type]="'password'"
+        [placeholder]="'password'"
+        [required]="true"
+        [attr.minlength]="6"
+        (change)="setPassword($event)"
+      ></cms-input>
+
+      <div *ngIf="password.touched && password.invalid">
+        <cms-error [condition]="password?.hasError('required')">
+          Password is required
+        </cms-error>
+        <cms-error [condition]="password?.hasError('minlength')">
+          Minimal length is 6
+        </cms-error>
       </div>
-      <div class="error" *ngIf="invalidPassword">Password doesn't match</div>
-      <div class="checkbox-override remember-me">
-        <input
-          type="checkbox"
-          class="remember-me-checkbox"
-          id="remember-me"
-          [checked]="isChecked"
-        />
-        <label class="remember-me-checkbox-label" for="remember-me"></label>
-        <span class="remember-me-text">Remember me</span>
-      </div>
-      <button class="submit-button" [disabled]="loginForm.invalid">
-        sign in
-      </button>
-      <ol class="account-password">
-        <li class="account-password-li">
-          <a
-            class="forgot-password-link account-password-li"
-            [routerLink]="['#']"
-            >Forgot password?</a
-          >
-        </li>
-        <li class="account-password-li">
-          <a
-            class="create-account-link account-password-li"
-            [routerLink]="['/register-page']"
-            >Create an account</a
-          >
-        </li>
-      </ol>
+
+      <cms-error [condition]="invalidPassword">
+        Password doesn't match
+      </cms-error>
+
+      <cms-input-checkbox [isChecked]="true">Remember me</cms-input-checkbox>
+
+      <cms-form-button [form]="loginForm">Sign in</cms-form-button>
     </form>
 
-    <cms-footer></cms-footer>
+    <cms-link-list [links]="'login'"></cms-link-list>
   </div>
 </section>
+
+<cms-footer></cms-footer>

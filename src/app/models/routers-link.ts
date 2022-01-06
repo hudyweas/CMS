@@ -1,9 +1,10 @@
 export interface routerDTO {
   urlName: string;
   urlLink: string;
+  subClass?: string;
 }
 
-export const routerLink: routerDTO[] = [
+export const footerRouterLink: routerDTO[] = [
   {
     urlName: 'Terms',
     urlLink: '#',
@@ -19,5 +20,18 @@ export const routerLink: routerDTO[] = [
   {
     urlName: 'Contact',
     urlLink: '#',
+  },
+];
+
+export const loginRouterLink: routerDTO[] = [
+  {
+    urlName: 'Forgot password?',
+    urlLink: '#',
+  },
+
+  {
+    urlName: 'Create an account',
+    urlLink: '/register-page',
+    subClass: 'main-color',
   },
 ];

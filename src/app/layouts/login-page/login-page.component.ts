@@ -3,7 +3,6 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { emailRegex } from 'src/app/models/regex.model';
-import * as jwt from 'jsonwebtoken';
 
 @Component({
   selector: 'app-login-page',
@@ -31,18 +30,6 @@ export class LoginPageComponent {
     this.afAuth
       .signInWithEmailAndPassword(this.email.value, this.password.value)
       .then(() => {
-        return this.afAuth.currentUser;
-      })
-      .then((user) => {
-        const jwtBearerToken = jwt.sign(
-          {
-            id: user.uid,
-          },
-          'secret',
-          { expiresIn: '1h' }
-        );
-
-        localStorage.setItem('id_token', jwtBearerToken);
         this.router.navigateByUrl('/main-page');
       })
       .catch((error) => {
@@ -51,7 +38,10 @@ export class LoginPageComponent {
       });
   }
 
-  public isEmailUsed() {
+  public isEmailUsed($event) {
+    this.email.setValue($event.target.value);
+    this.email.markAsTouched();
+
     if (this.isItEmail(this.email.value)) {
       this.afAuth
         .fetchSignInMethodsForEmail(this.email.value)
@@ -64,6 +54,9 @@ export class LoginPageComponent {
           }
         });
     }
+
+    console.log(this.email);
+
     this.isEmail = null;
   }
 
@@ -83,5 +76,8 @@ export class LoginPageComponent {
     return this.loginForm.get('password');
   }
 
-  public log() {}
+  public setPassword($event) {
+    this.password.setValue($event.target.value);
+    this.password.markAsTouched();
+  }
 }

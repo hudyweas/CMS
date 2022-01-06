@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class LinkComponent {
   @Input() urlLink: string = '';
+  @Input() subClass?: string = '';
 }

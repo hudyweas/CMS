@@ -1,0 +1,15 @@
+.header {
+  font-family: Anton, OpenSans;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.header::before {
+  content: ".";
+  display: inline-block;
+  width: 15px;
+  margin-right: 15px;
+  color: #f63738;
+  background-color: #f63738;
+}
