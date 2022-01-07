@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { emailRegex } from 'src/app/models/regex.model';
 
@@ -21,7 +21,7 @@ export class LoginPageComponent {
   public isEmail: boolean = null;
   public invalidPassword: boolean = null;
 
-  public loginForm = this.formBuilder.group({
+  public loginForm: FormGroup = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });

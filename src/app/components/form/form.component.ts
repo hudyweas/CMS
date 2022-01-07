@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { FormArray, FormControl } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'cms-form',
@@ -7,5 +7,6 @@ import { FormArray, FormControl } from '@angular/forms';
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
-  @Input() formControl: FormControl;
+  @Input() formGroup: FormGroup;
+  @Input() inputAtrr: [];
 }
