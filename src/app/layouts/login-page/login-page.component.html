@@ -15,17 +15,7 @@
         (change)="isEmailUsed($event)"
       ></cms-input>
 
-      <div *ngIf="email.touched && email.invalid">
-        <cms-error [condition]="email.hasError('required')">
-          Email is required
-        </cms-error>
-        <cms-error [condition]="email.hasError('email')">
-          This is not an email
-        </cms-error>
-        <cms-error [condition]="!isEmail">
-          There is no account for this email
-        </cms-error>
-      </div>
+      <cms-errors-list [field]="email" [isEmail]="isEmail"></cms-errors-list>
 
       <cms-input
         [type]="'password'"
@@ -35,18 +25,10 @@
         (change)="setPassword($event)"
       ></cms-input>
 
-      <div *ngIf="password.touched && password.invalid">
-        <cms-error [condition]="password?.hasError('required')">
-          Password is required
-        </cms-error>
-        <cms-error [condition]="password?.hasError('minlength')">
-          Minimal length is 6
-        </cms-error>
-      </div>
-
-      <cms-error [condition]="invalidPassword">
-        Password doesn't match
-      </cms-error>
+      <cms-errors-list
+        [field]="password"
+        [invalidPassword]="invalidPassword"
+      ></cms-errors-list>
 
       <cms-input-checkbox [isChecked]="true">Remember me</cms-input-checkbox>
 
@@ -54,6 +36,8 @@
     </form>
 
     <cms-link-list [links]="'login'"></cms-link-list>
+
+    <cms-form [formBuilder]="loginForm"></cms-form>
   </div>
 </section>
 

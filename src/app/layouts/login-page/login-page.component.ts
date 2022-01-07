@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { emailRegex } from 'src/app/models/regex.model';
 
@@ -21,7 +21,7 @@ export class LoginPageComponent {
   public isEmail: boolean = null;
   public invalidPassword: boolean = null;
 
-  public loginForm: FormGroup = this.formBuilder.group({
+  public loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
   });
@@ -55,8 +55,6 @@ export class LoginPageComponent {
         });
     }
 
-    console.log(this.email);
-
     this.isEmail = null;
   }
 
@@ -68,16 +66,16 @@ export class LoginPageComponent {
     }
   }
 
+  public setPassword($event) {
+    this.password.setValue($event.target.value);
+    this.password.markAsTouched();
+  }
+
   public get email() {
     return this.loginForm.get('email');
   }
 
   public get password() {
     return this.loginForm.get('password');
-  }
-
-  public setPassword($event) {
-    this.password.setValue($event.target.value);
-    this.password.markAsTouched();
   }
 }
