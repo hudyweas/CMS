@@ -35,3 +35,11 @@ export const loginRouterLink: routerDTO[] = [
     subClass: 'main-color',
   },
 ];
+
+export const registerRouterLink: routerDTO[] = [
+  {
+    urlName: 'Already have an account?',
+    urlLink: 'login-page',
+    subClass: 'main-color',
+  },
+];

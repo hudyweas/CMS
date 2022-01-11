@@ -3,11 +3,12 @@
   height: 40px;
   margin-left: auto;
   font-weight: bold;
-  font-size: large;
+  font-size: 18px;
   background-color: #f63738;
   border-top: 1px solid grey;
   color: #7f2021;
   text-transform: uppercase;
+  margin: 10px 0;
 }
 
 .button:hover {

@@ -5,11 +5,12 @@ const formBuilder = new FormBuilder();
 export const form: FormGroup = formBuilder.group({
   email: ['', [Validators.required, Validators.email]],
   password: ['', [Validators.required, Validators.minLength(6)]],
+  passwordRepeat: ['', [Validators.required, Validators.minLength(6)]],
 });
 
 export const attributes = {
-  formHeader: { content: 'sign in' },
-  formButton: { content: 'sign in' },
+  formHeader: { content: 'register' },
+  formButton: { content: 'register' },
   email: {
     type: 'email',
     placeholder: 'Email',
@@ -17,5 +18,9 @@ export const attributes = {
   password: {
     type: 'password',
     placeholder: 'password',
+  },
+  passwordRepeat: {
+    type: 'password',
+    placeholder: 'repeat password',
   },
 };

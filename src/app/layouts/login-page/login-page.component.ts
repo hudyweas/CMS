@@ -11,14 +11,10 @@ import { form, attributes } from 'src/app/models/forms/login-form.model';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent {
-  public isChecked: boolean = true;
-
   constructor(private afAuth: AngularFireAuth, private router: Router) {}
-  public loginFormAttributes = attributes;
-  public loginForm = form;
 
-  public isEmail: boolean = null;
-  public invalidPassword: boolean = null;
+  public loginForm = form;
+  public loginFormAttributes = attributes;
 
   public login($event) {
     this.afAuth
@@ -34,18 +30,7 @@ export class LoginPageComponent {
       });
   }
 
-  public serviceChange($event) {
-    switch ($event.target.id) {
-      case 'email':
-        this.isEmailUsed();
-        break;
-
-      default:
-        break;
-    }
-  }
-
-  public isEmailUsed() {
+  public isEmailUsed($event) {
     if (this.isItEmail(this.email.value)) {
       this.afAuth
         .fetchSignInMethodsForEmail(this.email.value)
@@ -55,23 +40,17 @@ export class LoginPageComponent {
           }
         });
     }
-
-    this.isEmail = null;
   }
 
   private isItEmail(email) {
-    if (emailRegex.test(email)) {
-      return true;
-    } else {
-      return false;
-    }
+    return emailRegex.test(email) ? true : false;
   }
 
-  public get email() {
+  private get email() {
     return this.loginForm.get('email');
   }
 
-  public get password() {
+  private get password() {
     return this.loginForm.get('password');
   }
 }

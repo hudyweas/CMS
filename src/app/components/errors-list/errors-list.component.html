@@ -1,21 +1,29 @@
 <div *ngIf="(field.touched || field.dirty) && field.invalid">
-  <cms-error [condition]="field.hasError('required')">
+  <cms-error [isErrorShown]="field.hasError('required')">
     Field is required
   </cms-error>
 
-  <cms-error [condition]="field.hasError('email')">
+  <cms-error [isErrorShown]="field.hasError('email')">
     This is not an email
   </cms-error>
 
-  <cms-error [condition]="field.hasError('minlength')">
+  <cms-error [isErrorShown]="field.hasError('minlength')">
     Minimal length is {{ field.errors.maxlength }}
   </cms-error>
 
-  <cms-error [condition]="field.hasError('emailUsed')">
+  <cms-error [isErrorShown]="field.hasError('emailUsed')">
     There is no account for this email
+  </cms-error>
+
+  <cms-error [isErrorShown]="field.hasError('emailUsedForRegistration')">
+    There is an account with this email!
+  </cms-error>
+
+  <cms-error [isErrorShown]="field.hasError('equalPasswords')">
+    Passwords are not equal!
   </cms-error>
 </div>
 
-<cms-error [condition]="field.hasError('invalidPassword')">
+<cms-error [isErrorShown]="field.hasError('invalidPassword')">
   Password doesn't match
 </cms-error>

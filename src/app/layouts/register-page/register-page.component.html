@@ -1,68 +1,14 @@
 <section class="wrapper-horizontal">
   <div class="wrapper">
-    <form
-      class="register-panel"
+    <cms-form
       [formGroup]="registerForm"
-      (ngSubmit)="createUser()"
-      novalidate
-    >
-      <h3 class="register-heading">register</h3>
-      <input
-        class="register-input"
-        type="text"
-        placeholder="Email"
-        formControlName="email"
-        (change)="isEmailUsed()"
-      />
-      <div
-        class="error"
-        *ngIf="(email.touched || email.dirty) && email.invalid"
-      >
-        <div *ngIf="email.hasError('required')">Email is required</div>
-        <div *ngIf="email.hasError('email')">This is not an email</div>
-        <div *ngIf="isEmail">Email has been used</div>
-      </div>
-      <input
-        class="register-input"
-        type="text"
-        placeholder="password"
-        formControlName="password"
-        (change)="isPasswordEqual()"
-      />
-      <div
-        class="error"
-        *ngIf="(password.touched || password.dirty) && password.invalid"
-      >
-        <div *ngIf="password?.hasError('required')">Repeat your password</div>
-        <div *ngIf="password?.hasError('minlength')">Minimal length is 6</div>
-      </div>
-      <input
-        class="register-input"
-        type="text"
-        placeholder="repeat your password"
-        formControlName="passwordRepeat"
-        (input)="isPasswordEqual()"
-      />
-      <div
-        class="error"
-        *ngIf="
-          (passwordRepeat.touched || passwordRepeat.dirty) &&
-          passwordRepeat.invalid
-        "
-      >
-        <div *ngIf="passwordRepeat.hasError('required')">
-          Repeat your password
-        </div>
-        <div *ngIf="passwordRepeat.hasError('minlength')">
-          Minimal length is 6
-        </div>
-        <div *ngIf="!isPassword">Passwords are not the same</div>
-      </div>
-      <button class="submit-button" [disabled]="registerForm.invalid">
-        register
-      </button>
-    </form>
+      [formAttr]="registerFormAttributes"
+      (submit)="createUser($event)"
+      (change)="serviceChange($event)"
+    ></cms-form>
 
-    <cms-footer></cms-footer>
+    <cms-link-list [links]="'register'"></cms-link-list>
   </div>
 </section>
+
+<cms-footer></cms-footer>

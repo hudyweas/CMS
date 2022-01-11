@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import {
   footerRouterLink,
   loginRouterLink,
+  registerRouterLink,
   routerDTO,
 } from 'src/app/models/routers-link';
 
@@ -27,6 +28,10 @@ export class LinkListComponent implements OnInit {
 
       case 'footer':
         this.linkList = footerRouterLink;
+        break;
+
+      case 'register':
+        this.linkList = registerRouterLink;
         break;
 
       default:

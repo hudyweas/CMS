@@ -9,9 +9,9 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { LoginPageComponent } from './layouts/login-page/login-page.component';
 import { RegisterPageComponent } from './layouts/register-page/register-page.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { MainPageComponent } from './main-page/main-page.component';
 import { ComponentsModule } from './components/components.module';
 import { RoutingRoutingModule } from './routing-routing.module';
+import { MainPageComponent } from './layouts/main-page/main-page.component';
 
 const components = [
   LoginPageComponent,

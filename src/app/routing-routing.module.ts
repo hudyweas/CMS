@@ -6,8 +6,8 @@ import {
 } from '@angular/fire/auth-guard';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginPageComponent } from './layouts/login-page/login-page.component';
+import { MainPageComponent } from './layouts/main-page/main-page.component';
 import { RegisterPageComponent } from './layouts/register-page/register-page.component';
-import { MainPageComponent } from './main-page/main-page.component';
 
 const redirectLoggedInToMain = () => redirectLoggedInTo(['main-page']);
 const redirectUnauthorizedToLogin = () =>

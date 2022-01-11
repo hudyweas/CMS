@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { attributes, form } from 'src/app/models/forms/register-form.model';
 import { emailRegex } from 'src/app/models/regex.model';
 
 @Component({
@@ -9,22 +9,13 @@ import { emailRegex } from 'src/app/models/regex.model';
   templateUrl: './register-page.component.html',
   styleUrls: ['./register-page.component.css'],
 })
-export class RegisterPageComponent implements OnInit {
-  constructor(
-    private afAuth: AngularFireAuth,
-    private router: Router,
-    private formBuilder: FormBuilder
-  ) {}
+export class RegisterPageComponent {
+  constructor(private afAuth: AngularFireAuth, private router: Router) {}
 
-  public ngOnInit(): void {}
+  public registerForm = form;
+  public registerFormAttributes = attributes;
 
-  public registerForm: FormGroup = this.formBuilder.group({
-    email: ['', [Validators.required, Validators.email]],
-    password: ['', [Validators.required, Validators.minLength(6)]],
-    passwordRepeat: ['', [Validators.required, Validators.minLength(6)]],
-  });
-
-  createUser() {
+  public createUser($event) {
     this.afAuth
       .createUserWithEmailAndPassword(this.email.value, this.password.value)
       .then(() => {
@@ -35,53 +26,61 @@ export class RegisterPageComponent implements OnInit {
       });
   }
 
-  public isPassword: boolean = null;
-  public isEmail: boolean = null;
-
-  public isPasswordEqual() {
+  private isPasswordEqual() {
     if (this.password.value === this.passwordRepeat.value) {
-      this.isPassword = true;
     } else {
       this.registerForm.controls['passwordRepeat'].setErrors({
-        incorrect: true,
+        equalPasswords: true,
       });
-      this.isPassword = false;
     }
   }
 
-  public isEmailUsed() {
+  private isEmailUsed() {
     if (this.isItEmail(this.email.value)) {
       this.afAuth
         .fetchSignInMethodsForEmail(this.email.value)
         .then((signInMethods) => {
           if (signInMethods.length) {
-            this.isEmail = true;
-            this.registerForm.controls['email'].setErrors({ incorrect: true });
-          } else {
-            this.isEmail = false;
+            this.registerForm.controls.email.setErrors({
+              emailUsedForRegistration: true,
+            });
           }
         });
     }
-    this.isEmail = null;
   }
 
-  public isItEmail(email) {
-    if (emailRegex.test(email)) {
-      return true;
-    } else {
-      return false;
+  public serviceChange($event) {
+    switch ($event.target.type) {
+      case 'email':
+        this.isEmailUsed();
+        break;
+
+      case 'password':
+        this.isPasswordEqual();
+        break;
+
+      case 'passwordRepeat':
+        this.isPasswordEqual();
+        break;
+
+      default:
+        break;
     }
   }
 
-  get email() {
+  private isItEmail(email) {
+    return emailRegex.test(email) ? true : false;
+  }
+
+  private get email() {
     return this.registerForm.get('email');
   }
 
-  get password() {
+  private get password() {
     return this.registerForm.get('password');
   }
 
-  get passwordRepeat() {
+  private get passwordRepeat() {
     return this.registerForm.get('passwordRepeat');
   }
 }
