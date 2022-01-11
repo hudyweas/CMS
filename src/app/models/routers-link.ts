@@ -31,7 +31,7 @@ export const loginRouterLink: routerDTO[] = [
 
   {
     urlName: 'Create an account',
-    urlLink: '/register-page',
+    urlLink: 'register-page',
     subClass: 'main-color',
   },
 ];

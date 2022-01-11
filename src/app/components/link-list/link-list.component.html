@@ -1,6 +1,6 @@
 <ol class="horizontal-list">
   <li class="horizontal-list-li" *ngFor="let l of linkList">
-    <cms-link [urlLink]="[l.urlLink]" [subClass]="l.subClass">
+    <cms-link [urlLink]="'/' + [l.urlLink]" [subClass]="l.subClass">
       {{ l.urlName }}
     </cms-link>
   </li>

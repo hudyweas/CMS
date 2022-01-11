@@ -5,19 +5,26 @@ import {
   Input,
   Output,
 } from '@angular/core';
+import { ControlContainer, FormGroupDirective } from '@angular/forms';
 
 @Component({
   selector: 'cms-input',
   templateUrl: './input.component.html',
   styleUrls: ['./input.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush,
+  viewProviders: [
+    {
+      provide: ControlContainer,
+      useExisting: FormGroupDirective,
+    },
+  ],
 })
 export class InputComponent {
   @Input() type: string = 'text';
   @Input() placeholder?: string = '';
-  @Input() required?: boolean = false;
-  @Input() minlength?: string = '0';
   @Input() pattern?: string = '*';
+  @Input() controlName? = '';
+  @Input() id? = '';
 
   @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
 

@@ -1,21 +1,28 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormGroup } from '@angular/forms';
 @Component({
   selector: 'cms-form',
   templateUrl: './form.component.html',
   styleUrls: ['./form.component.css'],
 })
 export class FormComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  @Input() formAttr;
+  @Input() formGroup;
 
-  @Input() formGroup: FormGroup;
-  @Input() inputAtrr: [];
-
-  public formArray: FormArray;
+  public formArray: any;
 
   ngOnInit(): void {
-    this.formArray = this.formBuilder.array([this.formGroup]);
-    console.log(this.formArray);
+    this.formArray = Object.keys(this.formGroup.controls);
+  }
+
+  @Output() emitter: EventEmitter<string> = new EventEmitter<string>();
+  @Output() submitEmitter: EventEmitter<string> = new EventEmitter<string>();
+
+  inputEmit(inputValue: string) {
+    this.emitter.emit(inputValue);
+  }
+
+  submitEmit(inputValue: string) {
+    this.submitEmitter.emit(inputValue);
   }
 }

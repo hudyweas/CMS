@@ -12,6 +12,7 @@ import { FormButtonComponent } from './form-button/form-button.component';
 import { ErrorComponent } from './error/error.component';
 import { FormComponent } from './form/form.component';
 import { ErrorsListComponent } from './errors-list/errors-list.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const components = [
   FooterComponent,
@@ -29,6 +30,12 @@ const components = [
 @NgModule({
   declarations: components,
   exports: components,
-  imports: [CommonModule, BrowserModule, RouterModule],
+  imports: [
+    CommonModule,
+    BrowserModule,
+    RouterModule,
+    ReactiveFormsModule,
+    FormsModule,
+  ],
 })
 export class ComponentsModule {}

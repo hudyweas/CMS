@@ -1,43 +1,13 @@
 <section class="wrapper-horizontal">
   <div class="wrapper">
-    <form
-      class="login-panel"
-      (ngSubmit)="login()"
+    <cms-form
       [formGroup]="loginForm"
-      novalidate
-    >
-      <cms-form-header>Sign in</cms-form-header>
-
-      <cms-input
-        [type]="'email'"
-        [placeholder]="'Email'"
-        [required]="true"
-        (change)="isEmailUsed($event)"
-      ></cms-input>
-
-      <cms-errors-list [field]="email" [isEmail]="isEmail"></cms-errors-list>
-
-      <cms-input
-        [type]="'password'"
-        [placeholder]="'password'"
-        [required]="true"
-        [attr.minlength]="6"
-        (change)="setPassword($event)"
-      ></cms-input>
-
-      <cms-errors-list
-        [field]="password"
-        [invalidPassword]="invalidPassword"
-      ></cms-errors-list>
-
-      <cms-input-checkbox [isChecked]="true">Remember me</cms-input-checkbox>
-
-      <cms-form-button [form]="loginForm">Sign in</cms-form-button>
-    </form>
+      [formAttr]="loginFormAttributes"
+      (submit)="login($event)"
+      (change)="serviceChange($event)"
+    ></cms-form>
 
     <cms-link-list [links]="'login'"></cms-link-list>
-
-    <cms-form [formGroup]="loginForm" [inputAtrr]=""></cms-form>
   </div>
 </section>
 

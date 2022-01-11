@@ -28,7 +28,6 @@ export class RegisterPageComponent implements OnInit {
     this.afAuth
       .createUserWithEmailAndPassword(this.email.value, this.password.value)
       .then(() => {
-        console.log('User created');
         this.router.navigateByUrl('/login-page');
       })
       .catch((error) => {
