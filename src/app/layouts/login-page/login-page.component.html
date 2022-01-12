@@ -1,0 +1,14 @@
+<section class="wrapper-horizontal">
+  <div class="wrapper">
+    <cms-form
+      [formGroup]="loginForm"
+      [formAttr]="loginFormAttributes"
+      (submit)="login($event)"
+      (change)="isEmailUsed($event)"
+    ></cms-form>
+
+    <cms-link-list [links]="'login'"></cms-link-list>
+  </div>
+</section>
+
+<cms-footer></cms-footer>

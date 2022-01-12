@@ -1,0 +1,18 @@
+<form class="form" [formGroup]="formGroup" (ngSubmit)="submitEmit($event)">
+  <cms-form-header>{{ formAttr["formHeader"].content }}</cms-form-header>
+
+  <div *ngFor="let controlName of formArray">
+    <cms-input
+      [type]="formAttr[controlName].type"
+      [placeholder]="formAttr[controlName].placeholder"
+      [id]="controlName"
+      [controlName]="controlName"
+      (change)="inputEmit($event)"
+    ></cms-input>
+    <cms-errors-list [field]="formGroup.get(controlName)"></cms-errors-list>
+  </div>
+
+  <cms-form-button [form]="formGroup">
+    {{ formAttr["formButton"].content }}
+  </cms-form-button>
+</form>

@@ -1,0 +1,14 @@
+<section class="wrapper-horizontal">
+  <div class="wrapper">
+    <cms-form
+      [formGroup]="registerForm"
+      [formAttr]="registerFormAttributes"
+      (submit)="createUser($event)"
+      (change)="serviceChange($event)"
+    ></cms-form>
+
+    <cms-link-list [links]="'register'"></cms-link-list>
+  </div>
+</section>
+
+<cms-footer></cms-footer>
