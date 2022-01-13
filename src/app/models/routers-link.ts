@@ -4,6 +4,25 @@ export interface routerDTO {
   subClass?: string;
 }
 
+export const menuRouterLink: routerDTO[] = [
+  {
+    urlName: 'Main page',
+    urlLink: 'main-page',
+  },
+  {
+    urlName: 'Two',
+    urlLink: '#',
+  },
+  {
+    urlName: 'Three',
+    urlLink: '#',
+  },
+  {
+    urlName: 'Admin panel',
+    urlLink: 'admin-panel',
+  },
+];
+
 export const footerRouterLink: routerDTO[] = [
   {
     urlName: 'Terms',

@@ -1,0 +1,7 @@
+<ol class="menu">
+  <li class="menu-li" *ngFor="let l of linkList">
+    <cms-link [urlLink]="'/' + [l.urlLink]" [subClass]="'white menu'">
+      {{ l.urlName }}
+    </cms-link>
+  </li>
+</ol>

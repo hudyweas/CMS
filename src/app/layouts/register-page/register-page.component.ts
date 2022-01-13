@@ -3,6 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { attributes, form } from 'src/app/models/forms/register-form.model';
 import { emailRegex } from 'src/app/models/regex.model';
+import { DatabaseConnectorService } from 'src/app/services/shared-services/database-connector.service';
 
 @Component({
   selector: 'app-register-page',
@@ -10,7 +11,11 @@ import { emailRegex } from 'src/app/models/regex.model';
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    private dbConnector: DatabaseConnectorService
+  ) {}
 
   public registerForm = form;
   public registerFormAttributes = attributes;

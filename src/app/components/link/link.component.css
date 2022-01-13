@@ -6,3 +6,12 @@
 .main-color {
   color: #7f2021;
 }
+
+.white {
+  color: white;
+}
+
+.menu {
+  font-size: 20px;
+  font-weight: bold;
+}

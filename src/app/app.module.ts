@@ -12,11 +12,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ComponentsModule } from './components/components.module';
 import { RoutingRoutingModule } from './routing-routing.module';
 import { MainPageComponent } from './layouts/main-page/main-page.component';
+import { AdminPanelComponent } from './layouts/admin-panel/admin-panel.component';
+import { ServicesModule } from './services/services.module';
 
 const components = [
   LoginPageComponent,
   RegisterPageComponent,
   MainPageComponent,
+  AdminPanelComponent,
 ];
 
 @NgModule({
@@ -31,6 +34,7 @@ const components = [
     ReactiveFormsModule,
     ComponentsModule,
     RoutingRoutingModule,
+    ServicesModule,
   ],
   exports: [components],
   bootstrap: [AppComponent],
