@@ -1,14 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFireDatabase } from '@angular/fire/database';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-admin-panel',
   templateUrl: './admin-panel.component.html',
   styleUrls: ['./admin-panel.component.css'],
 })
-export class AdminPanelComponent implements OnInit {
-  constructor(private afAuth: AngularFireAuth) {}
-
-  ngOnInit(): void {}
+export class AdminPanelComponent {
+  constructor() {}
 }

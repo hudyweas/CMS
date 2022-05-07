@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DatabaseConnectorService } from 'src/app/services/shared-services/database-connector.service';
 
 @Component({
   selector: 'cms-user-management',
@@ -6,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./user-management.component.css'],
 })
 export class UserManagementComponent implements OnInit {
-  constructor() {}
+  constructor(private dbConnector: DatabaseConnectorService) {}
 
-  ngOnInit(): void {}
+  public users;
+
+  ngOnInit(): void {
+    this.dbConnector.getUsers().subscribe((users) => {
+      this.users = users;
+    });
+  }
 }

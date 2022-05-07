@@ -15,6 +15,8 @@ import { ErrorsListComponent } from './errors-list/errors-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuComponent } from './menu/menu.component';
 import { UserManagementComponent } from './user-management/user-management.component';
+import { Button } from 'protractor';
+import { ButtonComponent } from './button/button.component';
 
 const components = [
   FooterComponent,
@@ -29,6 +31,7 @@ const components = [
   ErrorsListComponent,
   MenuComponent,
   UserManagementComponent,
+  ButtonComponent,
 ];
 
 @NgModule({

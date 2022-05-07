@@ -1,16 +1,23 @@
 import { Injectable } from '@angular/core';
-import * as db from 'firebase';
+import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DatabaseConnectorService {
-  constructor() {}
+  constructor(private db: AngularFireDatabase) {}
 
-  addDataToDatabase(path, model) {
-    db.default
-      .database()
-      .ref(path + 1)
-      .set(model);
+  private users: AngularFireList<any>;
+
+  saveUser(user) {
+    this.db.object('/users/' + user.uid).update({
+      email: user.email,
+      uid: user.uid,
+    });
+  }
+
+  getUsers() {
+    this.users = this.db.list('users');
+    return this.users.valueChanges();
   }
 }

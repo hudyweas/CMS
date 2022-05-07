@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import { attributes, form } from 'src/app/models/forms/register-form.model';
 import { emailRegex } from 'src/app/models/regex.model';
-import { DatabaseConnectorService } from 'src/app/services/shared-services/database-connector.service';
+import { FirebaseAuthService } from 'src/app/services/shared-services/firebase-auth.service';
 
 @Component({
   selector: 'app-register-page',
@@ -11,24 +9,13 @@ import { DatabaseConnectorService } from 'src/app/services/shared-services/datab
   styleUrls: ['./register-page.component.css'],
 })
 export class RegisterPageComponent {
-  constructor(
-    private afAuth: AngularFireAuth,
-    private router: Router,
-    private dbConnector: DatabaseConnectorService
-  ) {}
+  constructor(private fbAuth: FirebaseAuthService) {}
 
   public registerForm = form;
   public registerFormAttributes = attributes;
 
   public createUser($event) {
-    this.afAuth
-      .createUserWithEmailAndPassword(this.email.value, this.password.value)
-      .then(() => {
-        this.router.navigateByUrl('/login-page');
-      })
-      .catch((error) => {
-        console.error;
-      });
+    this.fbAuth.createUser(this.email, this.password);
   }
 
   private isPasswordEqual() {
@@ -42,15 +29,13 @@ export class RegisterPageComponent {
 
   private isEmailUsed() {
     if (this.isItEmail(this.email.value)) {
-      this.afAuth
-        .fetchSignInMethodsForEmail(this.email.value)
-        .then((signInMethods) => {
-          if (signInMethods.length) {
-            this.registerForm.controls.email.setErrors({
-              emailUsedForRegistration: true,
-            });
-          }
-        });
+      this.fbAuth.getSignInMethods(this.email).then((signInMethods) => {
+        if (signInMethods.length) {
+          this.registerForm.controls.email.setErrors({
+            emailUsedForRegistration: true,
+          });
+        }
+      });
     }
   }
 

@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { Router } from '@angular/router';
 import { emailRegex } from 'src/app/models/regex.model';
-
 import { form, attributes } from 'src/app/models/forms/login-form.model';
+import { FirebaseAuthService } from 'src/app/services/shared-services/firebase-auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -11,34 +9,29 @@ import { form, attributes } from 'src/app/models/forms/login-form.model';
   styleUrls: ['./login-page.component.css'],
 })
 export class LoginPageComponent {
-  constructor(private afAuth: AngularFireAuth, private router: Router) {}
+  constructor(private fbAuth: FirebaseAuthService) {}
 
   public loginForm = form;
   public loginFormAttributes = attributes;
 
   public login($event) {
-    this.afAuth
-      .signInWithEmailAndPassword(this.email.value, this.password.value)
-      .then(() => {
-        this.router.navigateByUrl('/main-page');
-      })
-      .catch((error) => {
-        if (error.code === 'auth/wrong-password') {
-          this.loginForm.controls.password.setErrors({ invalidPassword: true });
-        }
-        console.error;
-      });
+    try {
+      this.fbAuth.login(this.email, this.password);
+    } catch (error) {
+      if (error.code === 'auth/wrong-password') {
+        this.loginForm.controls.password.setErrors({ invalidPassword: true });
+      }
+      console.error;
+    }
   }
 
   public isEmailUsed($event) {
     if (this.isItEmail(this.email.value)) {
-      this.afAuth
-        .fetchSignInMethodsForEmail(this.email.value)
-        .then((signInMethods) => {
-          if (!signInMethods.length) {
-            this.loginForm.controls.email.setErrors({ emailUsed: true });
-          }
-        });
+      this.fbAuth.getSignInMethods(this.email).then((signInMethods) => {
+        if (!signInMethods.length) {
+          this.loginForm.controls.email.setErrors({ emailUsed: true });
+        }
+      });
     }
   }
 
